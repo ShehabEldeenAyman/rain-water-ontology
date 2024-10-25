@@ -1,0 +1,190 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix ex:   <http://example.org#> .
+
+ex:RainWaterOntology a owl:Ontology ;
+    rdfs:label "Rain Water Ontology" ;
+    rdfs:comment "This ontology models Rain water" ;
+    owl:versionInfo "1.0" .
+
+ex:RainWater a owl:Class ;
+    rdfs:label "RainWater" ;
+    rdfs:comment "The main class for this ontology." ;
+    ex:Has ex:Storage ;
+    ex:Has ex:Reuse ;
+    ex:Has ex:Collection ;
+    ex:Has ex:Treatment ;
+    ex:Has ex:Monitoring ;
+    ex:Has ex:Distribution .
+###########################################################
+
+ex:Storage a owl:Class ;
+    ex:Has ex:StorageTank.
+
+ex:StorageTank a owl:Class ;
+    ex:Has ex:OverflowMechanism;
+    rdfs:comment "Containers where collected rainwater is stored." .
+
+ex:OverflowMechanism a owl:Class ;
+        rdfs:comment "Systems to handle excess water when storage tanks are full." .
+###########################################################
+
+ex:Reuse a owl:Class ;
+    ex:DesignatedFor ex:NonPottable;
+    ex:UsedFor ex:Irrigation.
+
+ex:Irrigation a owl:Class .
+ex:NonPottable a owl:Class .
+
+###########################################################
+
+ex:Collection a owl:Class ;
+    rdfs:comment "Precipitation that falls from the atmosphere in the form of rain." ;
+    ex:InstalledOn ex:CatchmentArea ;
+    ex:CollectedBy ex:RainBarrel;
+    ex:CollectedBy ex:Gutter;
+    ex:CollectedBy ex:Downspout.
+
+
+ex:CatchmentArea a owl:Class ;
+    rdfs:comment "Surface area where rainwater is collected (e.g., rooftops, paved surfaces)." .
+
+ex:Collection a owl:Class ;
+    rdfs:comment "Structures to collect rain." .
+
+ex:RainBarrel a owl:Class .
+ex:Gutter a owl:Class .
+ex:Downspout a owl:Class .
+
+###########################################################
+
+ex:Treatment a owl:Class ;
+    ex:includes ex:Sedimentation;
+    ex:FilteredBy ex:FiltrationSystem;
+    ex:DisinfectedBy ex:DisinfectionSystem.
+
+ex:Sedimentation a owl:Class ;
+    rdfs:comment "A process where larger particles settle at the bottom of a tank.";
+    ex:OccursIn ex:SedimentationTank.
+
+ex:DisinfectionSystem a owl:Class ;
+        rdfs:comment "Methods like UV light or chlorination used to treat rainwater for potable uses.".
+
+ex:FiltrationSystem a owl:Class ;
+        rdfs:comment "Devices or processes used to remove particulates from collected rainwater.".
+
+ex:SedimentationTank a owl:Class .
+
+###########################################################
+
+ex:Monitoring a owl:Class ;
+    ex:Has ex:WaterQualitySensor;
+    ex:Has ex:Sampling.
+
+ex:WaterQualitySensor a owl:Class ;
+    rdfs:comment "Devices used to measure pH, turbidity, contaminants, etc.".
+
+ex:Sampling a owl:Class ;
+    rdfs:comment "Collecting water samples to assess quality".
+
+ex:Salinity a ex:WaterQualitySensor;
+    rdfs:comment "Method: Conductivity";
+    rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:Temperature a ex:WaterQualitySensor;
+    rdfs:comment "Method: Thermometer (electronic)";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:Transparency a ex:WaterQualitySensor;
+    rdfs:comment "Method: Secchi depth, PAR sensor";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:DissolvedOxygen a ex:WaterQualitySensor;
+    rdfs:comment "Method: Winkler titration, electrochemical and optical sensors";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:Ammonium a ex:WaterQualitySensor;
+    rdfs:comment "Method: Photometric or ion-selective electrodes";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:NitrateNitrite a ex:WaterQualitySensor;
+    rdfs:comment "Method: Photometrically (ion-selective electrode or ion chromatography)";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:TotalNitrogen a ex:WaterQualitySensor;
+    rdfs:comment "Method: Peroxidsulfate digestion or Kjeldahl method";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:Phosphate a ex:WaterQualitySensor;
+    rdfs:comment "Method: Photometrically";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:TotalPhosphorus a ex:WaterQualitySensor;
+    rdfs:comment "Method: Boiling with potassium peroxidsulphate at low pH";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:DissolvedSilica a ex:WaterQualitySensor;
+    rdfs:comment "Method: Photometrically";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:TotalOrganicCarbon a ex:WaterQualitySensor;
+    rdfs:comment "Method: TOC analyzer";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+ex:ParticulateOrganicCarbon a ex:WaterQualitySensor;
+    rdfs:comment "Method: TOC analyzer on a filtered sample";
+        rdfs:subClassOf ex:WaterQualitySensor.
+
+###########################################################
+
+ex:Distribution a owl:Class ;
+    ex:Has ex:DistributionPipe;
+    ex:Has ex:PumpSystem;
+    ex:Has ex:ControlValve.
+
+ex:DistributionPipe a owl:Class ;
+        rdfs:comment "Networks that transport treated or untreated rainwater to various points of use.".
+
+ex:PumpSystem a owl:Class ;
+        rdfs:comment "Devices that facilitate the movement of rainwater from storage tanks to where it’s needed.".
+
+ex:ControlValve a owl:Class ;
+        rdfs:comment "Devices that regulate flow in the distribution network.".
+
+###########################################################
+   
+ex:Has a owl:ObjectProperty ;
+    rdfs:label "Has a property".
+
+ex:DesignatedFor a owl:ObjectProperty ;
+    rdfs:label "Designated for property".
+
+ex:UsedFor a owl:ObjectProperty ;
+    rdfs:label "Used for property".
+
+ex:InstalledOn a owl:ObjectProperty ;
+    rdfs:label "Installed on property".
+
+ex:CollectedBy a owl:ObjectProperty ;
+    rdfs:label "Collected by property".
+
+ex:includes a owl:ObjectProperty ;
+    rdfs:label "Includes property".
+
+ex:OccursIn a owl:ObjectProperty ;
+    rdfs:label "Occurs in property".
+
+ex:FilteredBy a owl:ObjectProperty ;
+    rdfs:label "Filtered by property".
+
+ex:DisinfectedBy a owl:ObjectProperty ;
+    rdfs:label "Disinfected by property".
+
+ex:hasReading a owl:DatatypeProperty ;
+    rdfs:label "has reading" ;
+    rdfs:comment "Holds the reading value of a sensor" ;
+    rdfs:domain ex:WaterQualitySensor ;
+    rdfs:range xsd:float .
+
+###########################################################

@@ -1,0 +1,531 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix ex:   <http://example.org#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Reference to the ontology file
+@base <https://shehabeldeenayman.github.io/rain_water_ontology.ttl> .
+
+###########################################################
+# Instances of RainWater and Related Classes
+
+ex:RainWaterSample1 a ex:RainWater ;
+    rdfs:label "Sample of Rain Water Collected on October 20, 2024" ;
+    ex:Has ex:StorageSystem1 ;
+    ex:Has ex:ReuseSystem1 ;
+    ex:Has ex:CollectionSystem1 ;
+    ex:Has ex:TreatmentSystem1 ;
+    ex:Has ex:MonitoringSystem1 ;
+    ex:Has ex:DistributionSystem1 .
+
+###########################################################
+# Instances of Storage and Related Classes
+
+ex:StorageSystem1 a ex:Storage ;
+    rdfs:label "Primary Rainwater Storage System" ;
+    ex:Has ex:StorageTank1 .
+
+ex:StorageTank1 a ex:StorageTank ;
+    rdfs:label "Main Storage Tank" ;
+    rdfs:comment "Holds up to 5000 liters of rainwater" ;
+    ex:Has ex:OverflowMechanism1 .
+
+ex:OverflowMechanism1 a ex:OverflowMechanism ;
+    rdfs:label "Overflow Mechanism for Main Tank" ;
+    rdfs:comment "Controls water release when the tank is full" .
+
+###########################################################
+# Instances of Reuse and Related Classes
+
+ex:ReuseSystem1 a ex:Reuse ;
+    rdfs:label "Rainwater Reuse System" ;
+    ex:DesignatedFor ex:NonPotableUse ;
+    ex:UsedFor ex:IrrigationSystem1 .
+
+ex:IrrigationSystem1 a ex:Irrigation ;
+    rdfs:label "Irrigation System for Garden Use" ;
+    rdfs:comment "Supplies non-potable rainwater to garden areas" .
+
+ex:NonPotableUse a ex:NonPottable ;
+    rdfs:label "Non-Potable Water Use" ;
+    rdfs:comment "Water intended for uses other than human consumption" .
+
+###########################################################
+# Instances of Collection and Related Classes
+
+ex:CollectionSystem1 a ex:Collection ;
+    rdfs:label "Rainwater Collection System" ;
+    ex:InstalledOn ex:RooftopCatchmentArea ;
+    ex:CollectedBy ex:RainBarrel1, ex:GutterSystem1, ex:DownspoutSystem1 .
+
+ex:RooftopCatchmentArea a ex:CatchmentArea ;
+    rdfs:label "Rooftop Catchment Area" ;
+    rdfs:comment "The surface area on the rooftop for collecting rainwater" .
+
+ex:RainBarrel1 a ex:RainBarrel ;
+    rdfs:label "Primary Rain Barrel" ;
+    rdfs:comment "Collects rainwater before directing it to storage" .
+
+ex:GutterSystem1 a ex:Gutter ;
+    rdfs:label "Gutter System" ;
+    rdfs:comment "Channels rainwater from the catchment area to downspouts" .
+
+ex:DownspoutSystem1 a ex:Downspout ;
+    rdfs:label "Main Downspout" ;
+    rdfs:comment "Directs water from the gutter to the rain barrel" .
+
+###########################################################
+# Instances of Treatment and Related Classes
+
+ex:TreatmentSystem1 a ex:Treatment ;
+    rdfs:label "Rainwater Treatment System" ;
+    ex:includes ex:SedimentationProcess ;
+    ex:FilteredBy ex:FiltrationSystem1 ;
+    ex:DisinfectedBy ex:DisinfectionSystem1 .
+
+ex:SedimentationProcess a ex:Sedimentation ;
+    rdfs:label "Sedimentation Process" ;
+    rdfs:comment "Allows particles to settle in a sedimentation tank" ;
+    ex:OccursIn ex:SedimentationTank1 .
+
+ex:SedimentationTank1 a ex:SedimentationTank ;
+    rdfs:label "Primary Sedimentation Tank" ;
+    rdfs:comment "Tank where sedimentation occurs for water treatment" .
+
+ex:FiltrationSystem1 a ex:FiltrationSystem ;
+    rdfs:label "Filtration System" ;
+    rdfs:comment "Filters out particles from collected rainwater" .
+
+ex:DisinfectionSystem1 a ex:DisinfectionSystem ;
+    rdfs:label "UV Disinfection System" ;
+    rdfs:comment "Uses UV light to disinfect the treated rainwater" .
+
+###########################################################
+# Instances of Monitoring and Related Classes
+
+ex:MonitoringSystem1 a ex:Monitoring ;
+    rdfs:label "Water Quality Monitoring System" ;
+    ex:Has ex:SalinitySensor1, ex:TemperatureSensor1, ex:TransparencySensor1, ex:DissolvedOxygenSensor1 .
+
+ex:SalinitySensor1 a ex:Salinity ;
+    rdfs:label "Salinity Sensor" ;
+    rdfs:comment "Conductivity-based salinity sensor" .
+
+ex:TemperatureSensor1 a ex:Temperature ;
+    rdfs:label "Temperature Sensor" ;
+    rdfs:comment "Electronic thermometer for temperature measurements" .
+
+ex:TransparencySensor1 a ex:Transparency ;
+    rdfs:label "Transparency Sensor" ;
+    rdfs:comment "Measures water transparency using Secchi depth" .
+
+ex:DissolvedOxygenSensor1 a ex:DissolvedOxygen ;
+    rdfs:label "Dissolved Oxygen Sensor" ;
+    rdfs:comment "Electrochemical sensor for dissolved oxygen levels" .
+
+###########################################################
+# Instances of Distribution and Related Classes
+
+ex:DistributionSystem1 a ex:Distribution ;
+    rdfs:label "Rainwater Distribution System" ;
+    ex:Has ex:DistributionPipe1, ex:PumpSystem1, ex:ControlValve1 .
+
+ex:DistributionPipe1 a ex:DistributionPipe ;
+    rdfs:label "Main Distribution Pipe" ;
+    rdfs:comment "Pipes that transport treated rainwater to points of use" .
+
+ex:PumpSystem1 a ex:PumpSystem ;
+    rdfs:label "Pump System" ;
+    rdfs:comment "Pumps rainwater from storage to distribution" .
+
+ex:ControlValve1 a ex:ControlValve ;
+    rdfs:label "Main Control Valve" ;
+    rdfs:comment "Regulates the flow in the distribution system" .
+
+###########################################################
+
+ex:SalinitySensor1 a ex:Salinity ;
+    rdfs:label "Salinity Sensor Instance 1" ;
+    ex:hasReading "35.10"^^xsd:float .
+
+ex:SalinitySensor2 a ex:Salinity ;
+    rdfs:label "Salinity Sensor Instance 2" ;
+    ex:hasReading "35.20"^^xsd:float .
+
+ex:SalinitySensor3 a ex:Salinity ;
+    rdfs:label "Salinity Sensor Instance 3" ;
+    ex:hasReading "35.30"^^xsd:float .
+
+ex:SalinitySensor4 a ex:Salinity ;
+    rdfs:label "Salinity Sensor Instance 4" ;
+    ex:hasReading "35.40"^^xsd:float .
+
+ex:SalinitySensor5 a ex:Salinity ;
+    rdfs:label "Salinity Sensor Instance 5" ;
+    ex:hasReading "35.50"^^xsd:float .
+
+ex:SalinitySensor6 a ex:Salinity ;
+    rdfs:label "Salinity Sensor Instance 6" ;
+    ex:hasReading "35.60"^^xsd:float .
+
+ex:SalinitySensor7 a ex:Salinity ;
+    rdfs:label "Salinity Sensor Instance 7" ;
+    ex:hasReading "35.70"^^xsd:float .
+
+ex:SalinitySensor8 a ex:Salinity ;
+    rdfs:label "Salinity Sensor Instance 8" ;
+    ex:hasReading "35.80"^^xsd:float .
+
+ex:TemperatureSensor1 a ex:Temperature ;
+    rdfs:label "Temperature Sensor Instance 1" ;
+    ex:hasReading "22.10"^^xsd:float .
+
+ex:TemperatureSensor2 a ex:Temperature ;
+    rdfs:label "Temperature Sensor Instance 2" ;
+    ex:hasReading "22.20"^^xsd:float .
+
+ex:TemperatureSensor3 a ex:Temperature ;
+    rdfs:label "Temperature Sensor Instance 3" ;
+    ex:hasReading "22.30"^^xsd:float .
+
+ex:TemperatureSensor4 a ex:Temperature ;
+    rdfs:label "Temperature Sensor Instance 4" ;
+    ex:hasReading "22.40"^^xsd:float .
+
+ex:TemperatureSensor5 a ex:Temperature ;
+    rdfs:label "Temperature Sensor Instance 5" ;
+    ex:hasReading "22.50"^^xsd:float .
+
+ex:TemperatureSensor6 a ex:Temperature ;
+    rdfs:label "Temperature Sensor Instance 6" ;
+    ex:hasReading "22.60"^^xsd:float .
+
+ex:TemperatureSensor7 a ex:Temperature ;
+    rdfs:label "Temperature Sensor Instance 7" ;
+    ex:hasReading "22.70"^^xsd:float .
+
+ex:TemperatureSensor8 a ex:Temperature ;
+    rdfs:label "Temperature Sensor Instance 8" ;
+    ex:hasReading "22.80"^^xsd:float .
+
+ex:TransparencySensor1 a ex:Transparency ;
+    rdfs:label "Transparency Sensor Instance 1" ;
+    ex:hasReading "4.10"^^xsd:float .
+
+ex:TransparencySensor2 a ex:Transparency ;
+    rdfs:label "Transparency Sensor Instance 2" ;
+    ex:hasReading "4.20"^^xsd:float .
+
+ex:TransparencySensor3 a ex:Transparency ;
+    rdfs:label "Transparency Sensor Instance 3" ;
+    ex:hasReading "4.30"^^xsd:float .
+
+ex:TransparencySensor4 a ex:Transparency ;
+    rdfs:label "Transparency Sensor Instance 4" ;
+    ex:hasReading "4.40"^^xsd:float .
+
+ex:TransparencySensor5 a ex:Transparency ;
+    rdfs:label "Transparency Sensor Instance 5" ;
+    ex:hasReading "4.50"^^xsd:float .
+
+ex:TransparencySensor6 a ex:Transparency ;
+    rdfs:label "Transparency Sensor Instance 6" ;
+    ex:hasReading "4.60"^^xsd:float .
+
+ex:TransparencySensor7 a ex:Transparency ;
+    rdfs:label "Transparency Sensor Instance 7" ;
+    ex:hasReading "4.70"^^xsd:float .
+
+ex:TransparencySensor8 a ex:Transparency ;
+    rdfs:label "Transparency Sensor Instance 8" ;
+    ex:hasReading "4.80"^^xsd:float .
+
+ex:DissolvedOxygenSensor1 a ex:DissolvedOxygen ;
+    rdfs:label "DissolvedOxygen Sensor Instance 1" ;
+    ex:hasReading "7.60"^^xsd:float .
+
+ex:DissolvedOxygenSensor2 a ex:DissolvedOxygen ;
+    rdfs:label "DissolvedOxygen Sensor Instance 2" ;
+    ex:hasReading "7.70"^^xsd:float .
+
+ex:DissolvedOxygenSensor3 a ex:DissolvedOxygen ;
+    rdfs:label "DissolvedOxygen Sensor Instance 3" ;
+    ex:hasReading "7.80"^^xsd:float .
+
+ex:DissolvedOxygenSensor4 a ex:DissolvedOxygen ;
+    rdfs:label "DissolvedOxygen Sensor Instance 4" ;
+    ex:hasReading "7.90"^^xsd:float .
+
+ex:DissolvedOxygenSensor5 a ex:DissolvedOxygen ;
+    rdfs:label "DissolvedOxygen Sensor Instance 5" ;
+    ex:hasReading "8.00"^^xsd:float .
+
+ex:DissolvedOxygenSensor6 a ex:DissolvedOxygen ;
+    rdfs:label "DissolvedOxygen Sensor Instance 6" ;
+    ex:hasReading "8.10"^^xsd:float .
+
+ex:DissolvedOxygenSensor7 a ex:DissolvedOxygen ;
+    rdfs:label "DissolvedOxygen Sensor Instance 7" ;
+    ex:hasReading "8.20"^^xsd:float .
+
+ex:DissolvedOxygenSensor8 a ex:DissolvedOxygen ;
+    rdfs:label "DissolvedOxygen Sensor Instance 8" ;
+    ex:hasReading "8.30"^^xsd:float .
+
+ex:AmmoniumSensor1 a ex:Ammonium ;
+    rdfs:label "Ammonium Sensor Instance 1" ;
+    ex:hasReading "0.50"^^xsd:float .
+
+ex:AmmoniumSensor2 a ex:Ammonium ;
+    rdfs:label "Ammonium Sensor Instance 2" ;
+    ex:hasReading "0.60"^^xsd:float .
+
+ex:AmmoniumSensor3 a ex:Ammonium ;
+    rdfs:label "Ammonium Sensor Instance 3" ;
+    ex:hasReading "0.70"^^xsd:float .
+
+ex:AmmoniumSensor4 a ex:Ammonium ;
+    rdfs:label "Ammonium Sensor Instance 4" ;
+    ex:hasReading "0.80"^^xsd:float .
+
+ex:AmmoniumSensor5 a ex:Ammonium ;
+    rdfs:label "Ammonium Sensor Instance 5" ;
+    ex:hasReading "0.90"^^xsd:float .
+
+ex:AmmoniumSensor6 a ex:Ammonium ;
+    rdfs:label "Ammonium Sensor Instance 6" ;
+    ex:hasReading "1.00"^^xsd:float .
+
+ex:AmmoniumSensor7 a ex:Ammonium ;
+    rdfs:label "Ammonium Sensor Instance 7" ;
+    ex:hasReading "1.10"^^xsd:float .
+
+ex:AmmoniumSensor8 a ex:Ammonium ;
+    rdfs:label "Ammonium Sensor Instance 8" ;
+    ex:hasReading "1.20"^^xsd:float .
+
+ex:NitrateNitriteSensor1 a ex:NitrateNitrite ;
+    rdfs:label "NitrateNitrite Sensor Instance 1" ;
+    ex:hasReading "0.20"^^xsd:float .
+
+ex:NitrateNitriteSensor2 a ex:NitrateNitrite ;
+    rdfs:label "NitrateNitrite Sensor Instance 2" ;
+    ex:hasReading "0.30"^^xsd:float .
+
+ex:NitrateNitriteSensor3 a ex:NitrateNitrite ;
+    rdfs:label "NitrateNitrite Sensor Instance 3" ;
+    ex:hasReading "0.40"^^xsd:float .
+
+ex:NitrateNitriteSensor4 a ex:NitrateNitrite ;
+    rdfs:label "NitrateNitrite Sensor Instance 4" ;
+    ex:hasReading "0.50"^^xsd:float .
+
+ex:NitrateNitriteSensor5 a ex:NitrateNitrite ;
+    rdfs:label "NitrateNitrite Sensor Instance 5" ;
+    ex:hasReading "0.60"^^xsd:float .
+
+ex:NitrateNitriteSensor6 a ex:NitrateNitrite ;
+    rdfs:label "NitrateNitrite Sensor Instance 6" ;
+    ex:hasReading "0.70"^^xsd:float .
+
+ex:NitrateNitriteSensor7 a ex:NitrateNitrite ;
+    rdfs:label "NitrateNitrite Sensor Instance 7" ;
+    ex:hasReading "0.80"^^xsd:float .
+
+ex:NitrateNitriteSensor8 a ex:NitrateNitrite ;
+    rdfs:label "NitrateNitrite Sensor Instance 8" ;
+    ex:hasReading "0.90"^^xsd:float .
+
+ex:TotalNitrogenSensor1 a ex:TotalNitrogen ;
+    rdfs:label "TotalNitrogen Sensor Instance 1" ;
+    ex:hasReading "2.10"^^xsd:float .
+
+ex:TotalNitrogenSensor2 a ex:TotalNitrogen ;
+    rdfs:label "TotalNitrogen Sensor Instance 2" ;
+    ex:hasReading "2.20"^^xsd:float .
+
+ex:TotalNitrogenSensor3 a ex:TotalNitrogen ;
+    rdfs:label "TotalNitrogen Sensor Instance 3" ;
+    ex:hasReading "2.30"^^xsd:float .
+
+ex:TotalNitrogenSensor4 a ex:TotalNitrogen ;
+    rdfs:label "TotalNitrogen Sensor Instance 4" ;
+    ex:hasReading "2.40"^^xsd:float .
+
+ex:TotalNitrogenSensor5 a ex:TotalNitrogen ;
+    rdfs:label "TotalNitrogen Sensor Instance 5" ;
+    ex:hasReading "2.50"^^xsd:float .
+
+ex:TotalNitrogenSensor6 a ex:TotalNitrogen ;
+    rdfs:label "TotalNitrogen Sensor Instance 6" ;
+    ex:hasReading "2.60"^^xsd:float .
+
+ex:TotalNitrogenSensor7 a ex:TotalNitrogen ;
+    rdfs:label "TotalNitrogen Sensor Instance 7" ;
+    ex:hasReading "2.70"^^xsd:float .
+
+ex:TotalNitrogenSensor8 a ex:TotalNitrogen ;
+    rdfs:label "TotalNitrogen Sensor Instance 8" ;
+    ex:hasReading "2.80"^^xsd:float .
+
+ex:PhosphateSensor1 a ex:Phosphate ;
+    rdfs:label "Phosphate Sensor Instance 1" ;
+    ex:hasReading "0.15"^^xsd:float .
+
+ex:PhosphateSensor2 a ex:Phosphate ;
+    rdfs:label "Phosphate Sensor Instance 2" ;
+    ex:hasReading "0.25"^^xsd:float .
+
+ex:PhosphateSensor3 a ex:Phosphate ;
+    rdfs:label "Phosphate Sensor Instance 3" ;
+    ex:hasReading "0.35"^^xsd:float .
+
+ex:PhosphateSensor4 a ex:Phosphate ;
+    rdfs:label "Phosphate Sensor Instance 4" ;
+    ex:hasReading "0.45"^^xsd:float .
+
+ex:PhosphateSensor5 a ex:Phosphate ;
+    rdfs:label "Phosphate Sensor Instance 5" ;
+    ex:hasReading "0.55"^^xsd:float .
+
+ex:PhosphateSensor6 a ex:Phosphate ;
+    rdfs:label "Phosphate Sensor Instance 6" ;
+    ex:hasReading "0.65"^^xsd:float .
+
+ex:PhosphateSensor7 a ex:Phosphate ;
+    rdfs:label "Phosphate Sensor Instance 7" ;
+    ex:hasReading "0.75"^^xsd:float .
+
+ex:PhosphateSensor8 a ex:Phosphate ;
+    rdfs:label "Phosphate Sensor Instance 8" ;
+    ex:hasReading "0.85"^^xsd:float .
+
+ex:TotalPhosphorusSensor1 a ex:TotalPhosphorus ;
+    rdfs:label "TotalPhosphorus Sensor Instance 1" ;
+    ex:hasReading "0.13"^^xsd:float .
+
+ex:TotalPhosphorusSensor2 a ex:TotalPhosphorus ;
+    rdfs:label "TotalPhosphorus Sensor Instance 2" ;
+    ex:hasReading "0.23"^^xsd:float .
+
+ex:TotalPhosphorusSensor3 a ex:TotalPhosphorus ;
+    rdfs:label "TotalPhosphorus Sensor Instance 3" ;
+    ex:hasReading "0.33"^^xsd:float .
+
+ex:TotalPhosphorusSensor4 a ex:TotalPhosphorus ;
+    rdfs:label "TotalPhosphorus Sensor Instance 4" ;
+    ex:hasReading "0.43"^^xsd:float .
+
+ex:TotalPhosphorusSensor5 a ex:TotalPhosphorus ;
+    rdfs:label "TotalPhosphorus Sensor Instance 5" ;
+    ex:hasReading "0.53"^^xsd:float .
+
+ex:TotalPhosphorusSensor6 a ex:TotalPhosphorus ;
+    rdfs:label "TotalPhosphorus Sensor Instance 6" ;
+    ex:hasReading "0.63"^^xsd:float .
+
+ex:TotalPhosphorusSensor7 a ex:TotalPhosphorus ;
+    rdfs:label "TotalPhosphorus Sensor Instance 7" ;
+    ex:hasReading "0.73"^^xsd:float .
+
+ex:TotalPhosphorusSensor8 a ex:TotalPhosphorus ;
+    rdfs:label "TotalPhosphorus Sensor Instance 8" ;
+    ex:hasReading "0.83"^^xsd:float .
+
+ex:DissolvedSilicaSensor1 a ex:DissolvedSilica ;
+    rdfs:label "DissolvedSilica Sensor Instance 1" ;
+    ex:hasReading "1.20"^^xsd:float .
+
+ex:DissolvedSilicaSensor2 a ex:DissolvedSilica ;
+    rdfs:label "DissolvedSilica Sensor Instance 2" ;
+    ex:hasReading "1.30"^^xsd:float .
+
+ex:DissolvedSilicaSensor3 a ex:DissolvedSilica ;
+    rdfs:label "DissolvedSilica Sensor Instance 3" ;
+    ex:hasReading "1.40"^^xsd:float .
+
+ex:DissolvedSilicaSensor4 a ex:DissolvedSilica ;
+    rdfs:label "DissolvedSilica Sensor Instance 4" ;
+    ex:hasReading "1.50"^^xsd:float .
+
+ex:DissolvedSilicaSensor5 a ex:DissolvedSilica ;
+    rdfs:label "DissolvedSilica Sensor Instance 5" ;
+    ex:hasReading "1.60"^^xsd:float .
+
+ex:DissolvedSilicaSensor6 a ex:DissolvedSilica ;
+    rdfs:label "DissolvedSilica Sensor Instance 6" ;
+    ex:hasReading "1.70"^^xsd:float .
+
+ex:DissolvedSilicaSensor7 a ex:DissolvedSilica ;
+    rdfs:label "DissolvedSilica Sensor Instance 7" ;
+    ex:hasReading "1.80"^^xsd:float .
+
+ex:DissolvedSilicaSensor8 a ex:DissolvedSilica ;
+    rdfs:label "DissolvedSilica Sensor Instance 8" ;
+    ex:hasReading "1.90"^^xsd:float .
+
+ex:TotalOrganicCarbonSensor1 a ex:TotalOrganicCarbon ;
+    rdfs:label "TotalOrganicCarbon Sensor Instance 1" ;
+    ex:hasReading "10.10"^^xsd:float .
+
+ex:TotalOrganicCarbonSensor2 a ex:TotalOrganicCarbon ;
+    rdfs:label "TotalOrganicCarbon Sensor Instance 2" ;
+    ex:hasReading "10.20"^^xsd:float .
+
+ex:TotalOrganicCarbonSensor3 a ex:TotalOrganicCarbon ;
+    rdfs:label "TotalOrganicCarbon Sensor Instance 3" ;
+    ex:hasReading "10.30"^^xsd:float .
+
+ex:TotalOrganicCarbonSensor4 a ex:TotalOrganicCarbon ;
+    rdfs:label "TotalOrganicCarbon Sensor Instance 4" ;
+    ex:hasReading "10.40"^^xsd:float .
+
+ex:TotalOrganicCarbonSensor5 a ex:TotalOrganicCarbon ;
+    rdfs:label "TotalOrganicCarbon Sensor Instance 5" ;
+    ex:hasReading "10.50"^^xsd:float .
+
+ex:TotalOrganicCarbonSensor6 a ex:TotalOrganicCarbon ;
+    rdfs:label "TotalOrganicCarbon Sensor Instance 6" ;
+    ex:hasReading "10.60"^^xsd:float .
+
+ex:TotalOrganicCarbonSensor7 a ex:TotalOrganicCarbon ;
+    rdfs:label "TotalOrganicCarbon Sensor Instance 7" ;
+    ex:hasReading "10.70"^^xsd:float .
+
+ex:TotalOrganicCarbonSensor8 a ex:TotalOrganicCarbon ;
+    rdfs:label "TotalOrganicCarbon Sensor Instance 8" ;
+    ex:hasReading "10.80"^^xsd:float .
+
+ex:ParticulateOrganicCarbonSensor1 a ex:ParticulateOrganicCarbon ;
+    rdfs:label "ParticulateOrganicCarbon Sensor Instance 1" ;
+    ex:hasReading "3.10"^^xsd:float .
+
+ex:ParticulateOrganicCarbonSensor2 a ex:ParticulateOrganicCarbon ;
+    rdfs:label "ParticulateOrganicCarbon Sensor Instance 2" ;
+    ex:hasReading "3.20"^^xsd:float .
+
+ex:ParticulateOrganicCarbonSensor3 a ex:ParticulateOrganicCarbon ;
+    rdfs:label "ParticulateOrganicCarbon Sensor Instance 3" ;
+    ex:hasReading "3.30"^^xsd:float .
+
+ex:ParticulateOrganicCarbonSensor4 a ex:ParticulateOrganicCarbon ;
+    rdfs:label "ParticulateOrganicCarbon Sensor Instance 4" ;
+    ex:hasReading "3.40"^^xsd:float .
+
+ex:ParticulateOrganicCarbonSensor5 a ex:ParticulateOrganicCarbon ;
+    rdfs:label "ParticulateOrganicCarbon Sensor Instance 5" ;
+    ex:hasReading "3.50"^^xsd:float .
+
+ex:ParticulateOrganicCarbonSensor6 a ex:ParticulateOrganicCarbon ;
+    rdfs:label "ParticulateOrganicCarbon Sensor Instance 6" ;
+    ex:hasReading "3.60"^^xsd:float .
+
+ex:ParticulateOrganicCarbonSensor7 a ex:ParticulateOrganicCarbon ;
+    rdfs:label "ParticulateOrganicCarbon Sensor Instance 7" ;
+    ex:hasReading "3.70"^^xsd:float .
+
+ex:ParticulateOrganicCarbonSensor8 a ex:ParticulateOrganicCarbon ;
+    rdfs:label "ParticulateOrganicCarbon Sensor Instance 8" ;
+    ex:hasReading "3.80"^^xsd:float .
+
