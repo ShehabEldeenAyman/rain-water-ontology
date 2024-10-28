@@ -8,3 +8,14 @@
 ex:ShapeOntology
     a owl:Ontology ;
     owl:imports <https://shehabeldeenayman.github.io/rain_water_ontology.ttl> .
+
+ex:SalinityShape
+    a sh:NodeShape ;
+    sh:targetClass ex:WaterQualitySensor ;
+    sh:property [
+        sh:path ex:Salinity ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+    ] .

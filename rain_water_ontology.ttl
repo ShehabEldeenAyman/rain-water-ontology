@@ -89,53 +89,113 @@ ex:WaterQualitySensor a owl:Class ;
 ex:Sampling a owl:Class ;
     rdfs:comment "Collecting water samples to assess quality".
 
-ex:Salinity a ex:WaterQualitySensor;
+ex:Salinity a owl:Class ;
     rdfs:comment "Method: Conductivity";
-    rdfs:subClassOf ex:WaterQualitySensor.
+    rdfs:subClassOf ex:WaterQualitySensor;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:Temperature a ex:WaterQualitySensor;
+ex:Temperature a owl:Class ;
     rdfs:comment "Method: Thermometer (electronic)";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:Transparency a ex:WaterQualitySensor;
+ex:Transparency a owl:Class ;
     rdfs:comment "Method: Secchi depth, PAR sensor";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:DissolvedOxygen a ex:WaterQualitySensor;
+ex:DissolvedOxygen a owl:Class ;
     rdfs:comment "Method: Winkler titration, electrochemical and optical sensors";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:Ammonium a ex:WaterQualitySensor;
+ex:Ammonium a owl:Class ;
     rdfs:comment "Method: Photometric or ion-selective electrodes";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:NitrateNitrite a ex:WaterQualitySensor;
+ex:NitrateNitrite a owl:Class ;
     rdfs:comment "Method: Photometrically (ion-selective electrode or ion chromatography)";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:TotalNitrogen a ex:WaterQualitySensor;
+ex:TotalNitrogen a owl:Class ;
     rdfs:comment "Method: Peroxidsulfate digestion or Kjeldahl method";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:Phosphate a ex:WaterQualitySensor;
+ex:Phosphate a owl:Class ;
     rdfs:comment "Method: Photometrically";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:TotalPhosphorus a ex:WaterQualitySensor;
+ex:TotalPhosphorus a owl:Class ;
     rdfs:comment "Method: Boiling with potassium peroxidsulphate at low pH";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:DissolvedSilica a ex:WaterQualitySensor;
+ex:DissolvedSilica a owl:Class ;
     rdfs:comment "Method: Photometrically";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:TotalOrganicCarbon a ex:WaterQualitySensor;
+ex:TotalOrganicCarbon a owl:Class ;
     rdfs:comment "Method: TOC analyzer";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
-ex:ParticulateOrganicCarbon a ex:WaterQualitySensor;
+ex:ParticulateOrganicCarbon a owl:Class ;
     rdfs:comment "Method: TOC analyzer on a filtered sample";
-        rdfs:subClassOf ex:WaterQualitySensor.
+        rdfs:subClassOf ex:WaterQualitySensor;
+        rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty ex:hasReading ;
+        owl:allValuesFrom xsd:float
+    ] .
 
 ###########################################################
 
