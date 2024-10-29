@@ -9,13 +9,39 @@ ex:ShapeOntology
     a owl:Ontology ;
     owl:imports <https://shehabeldeenayman.github.io/rain_water_ontology.ttl> .
 
-ex:SalinityShape
+# Shape to enforce at least one instance of each class exists
+ex:ExistenceShape
     a sh:NodeShape ;
-    sh:targetClass ex:WaterQualitySensor ;
+    sh:targetNode ex:Storage, ex:StorageTank, ex:OverflowMechanism, ex:Reuse, ex:Irrigation,
+    ex:NonPottable, ex:Collection, ex:CatchmentArea, ex:Collection, ex:RainBarrel, ex:Gutter,
+    ex:Downspout, ex:Treatment, ex:Sedimentation, ex:DisinfectionSystem, ex:FiltrationSystem,
+    ex:SedimentationTank, ex:Monitoring, ex:WaterQualitySensor, ex:Sampling, ex:Salinity,
+    ex:Temperature, ex:Transparency, ex:DissolvedOxygen, ex:Ammonium, ex:NitrateNitrite,
+    ex:TotalNitrogen, ex:Phosphate, ex:TotalPhosphorus, ex:DissolvedSilica, ex:TotalOrganicCarbon,
+    ex:ParticulateOrganicCarbon, ex:Distribution, ex:DistributionPipe, ex:PumpSystem, ex:ControlValve;
+    sh:minCount 1 ;
+    sh:message "At least one instance must exist in the data." .
+
+# Shape for Storage class
+ex:StorageShape
+    a sh:NodeShape ;
+    sh:targetClass ex:Storage ;
     sh:property [
-        sh:path ex:Salinity ;
-        sh:datatype xsd:integer ;
-        sh:minCount 1;
-        sh:maxCount 1 ;
-        sh:minInclusive 0 ;
+        sh:path ex:Has ;
+        sh:class ex:StorageTank ;
+        sh:minCount 1 ;
+        sh:message "At least one StorageTank is required for each Storage instance." ;
     ] .
+
+# Shape for StorageTank class
+ex:StorageTankShape
+    a sh:NodeShape ;
+    sh:targetClass ex:StorageTank ;
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:OverflowMechanism ;
+        sh:minCount 1 ;
+        sh:message "At least one OverflowMechanism is required for each StorageTank instance." ;
+    ] .
+
+
