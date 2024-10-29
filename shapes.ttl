@@ -8,8 +8,58 @@
 ex:ShapeOntology
     a owl:Ontology ;
     owl:imports <https://shehabeldeenayman.github.io/rain_water_ontology.ttl> .
+###########################################################
+# Shape to enforce structure of RainWater instances
+ex:RainWaterShape a sh:NodeShape ;
+    sh:targetClass ex:RainWater ;
 
+    # Constraint for including Storage
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:Storage ;
+        sh:minCount 1 ;
+        sh:message "Each RainWater instance must have at least one Storage."
+    ] ;
 
+    # Constraint for including Reuse
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:Reuse ;
+        sh:minCount 1 ;
+        sh:message "Each RainWater instance must have at least one Reuse."
+    ] ;
+
+    # Constraint for including Collection
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:Collection ;
+        sh:minCount 1 ;
+        sh:message "Each RainWater instance must have at least one Collection."
+    ] ;
+
+    # Constraint for including Treatment
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:Treatment ;
+        sh:minCount 1 ;
+        sh:message "Each RainWater instance must have at least one Treatment."
+    ] ;
+
+    # Constraint for including Monitoring
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:Monitoring ;
+        sh:minCount 1 ;
+        sh:message "Each RainWater instance must have at least one Monitoring."
+    ] ;
+
+    # Constraint for including Distribution
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:Distribution ;
+        sh:minCount 1 ;
+        sh:message "Each RainWater instance must have at least one Distribution."
+    ] .
 ###########################################################
 # Shape for Storage class
 ex:StorageShape
@@ -77,5 +127,60 @@ ex:CollectionShape a sh:NodeShape ;
         sh:message "Each Collection instance must be collected by at least one of RainBarrel, Gutter, or Downspout."
     ] .
 ###########################################################
+# Shape to enforce structure of Treatment instances
+ex:TreatmentShape a sh:NodeShape ;
+    sh:targetClass ex:Treatment ;
+    
+    # Constraint for including Sedimentation
+    sh:property [
+        sh:path ex:includes ;
+        sh:class ex:Sedimentation ;
+        sh:minCount 1 ;
+        sh:message "Each Treatment instance must include at least one Sedimentation."
+    ] ;
+    
+    # Constraint for including FiltrationSystem
+    sh:property [
+        sh:path ex:FilteredBy ;
+        sh:class ex:FiltrationSystem ;
+        sh:minCount 1 ;
+        sh:message "Each Treatment instance must be filtered by at least one FiltrationSystem."
+    ] ;
 
+    # Constraint for including DisinfectionSystem
+    sh:property [
+        sh:path ex:DisinfectedBy ;
+        sh:class ex:DisinfectionSystem ;
+        sh:minCount 1 ;
+        sh:message "Each Treatment instance must be disinfected by at least one DisinfectionSystem."
+    ] .
+###########################################################
+# Shape to enforce structure of Distribution instances
+ex:DistributionShape a sh:NodeShape ;
+    sh:targetClass ex:Distribution ;
+    
+    # Constraint for including DistributionPipe
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:DistributionPipe ;
+        sh:minCount 1 ;
+        sh:message "Each Distribution instance must have at least one DistributionPipe."
+    ] ;
+    
+    # Constraint for including PumpSystem
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:PumpSystem ;
+        sh:minCount 1 ;
+        sh:message "Each Distribution instance must have at least one PumpSystem."
+    ] ;
+
+    # Constraint for including ControlValve
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:ControlValve ;
+        sh:minCount 1 ;
+        sh:message "Each Distribution instance must have at least one ControlValve."
+    ] .
+###########################################################
 
