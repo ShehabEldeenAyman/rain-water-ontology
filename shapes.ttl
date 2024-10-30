@@ -183,4 +183,17 @@ ex:DistributionShape a sh:NodeShape ;
         sh:message "Each Distribution instance must have at least one ControlValve."
     ] .
 ###########################################################
-
+ex:MonitoringShape a sh:NodeShape ;
+    sh:targetClass ex:Monitoring ;
+    sh:property [
+        sh:path ex:Has ;
+        sh:class ex:WaterQualitySensor ;
+        sh:minCount 1 ;
+        sh:message "Monitoring must have at least one WaterQualitySensor."
+    ] ;
+ sh:property [
+        sh:path ex:Has ;
+        sh:class ex:Sampling ;
+        sh:minCount 1 ;
+        sh:message "Monitoring must have at least one Sampling process."
+    ] .
