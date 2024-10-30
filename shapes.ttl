@@ -3,6 +3,8 @@
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix ex:   <http://example.org#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
 
 # Reference to the ontology file
 ex:ShapeOntology
@@ -198,16 +200,26 @@ ex:MonitoringShape a sh:NodeShape ;
         sh:message "Monitoring must have at least one Sampling process."
     ] .
 
+# Define SHACL shape for WaterQualitySensor
 ex:WaterQualitySensorShape a sh:NodeShape ;
     sh:targetClass ex:WaterQualitySensor ;
-    sh:property [
-        sh:path ex:hasReading ;
-        sh:datatype xsd:float ;
-        sh:minCount 1 ;
-        sh:message "WaterQualitySensor readings must be a float value."
-    ] .
+    sh:or (
+        [ sh:class ex:Salinity ]
+        [ sh:class ex:Temperature ]
+        [ sh:class ex:Transparency ]
+        [ sh:class ex:DissolvedOxygen ]
+        [ sh:class ex:Ammonium ]
+        [ sh:class ex:NitrateNitrite ]
+        [ sh:class ex:TotalNitrogen ]
+        [ sh:class ex:Phosphate ]
+        [ sh:class ex:TotalPhosphorus ]
+        [ sh:class ex:DissolvedSilica ]
+        [ sh:class ex:TotalOrganicCarbon ]
+        [ sh:class ex:ParticulateOrganicCarbon ]
+    ) ;
+    rdfs:comment "Ensures that any instance of WaterQualitySensor is one of its specified subclasses." .
 
-    ex:SalinityShape a sh:NodeShape ;
+ ex:SalinityShape a sh:NodeShape ;
     sh:targetClass ex:Salinity ;
     sh:node ex:WaterQualitySensorShape ;
     sh:property [
@@ -216,7 +228,7 @@ ex:WaterQualitySensorShape a sh:NodeShape ;
         sh:message "Salinity must have a reading as a float value."
     ] .
 
-    ex:TemperatureShape a sh:NodeShape ;
+ex:TemperatureShape a sh:NodeShape ;
     sh:targetClass ex:Temperature ;
     sh:node ex:WaterQualitySensorShape ;
     sh:property [
