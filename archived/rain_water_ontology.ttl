@@ -3,6 +3,7 @@
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix ex:   <http://example.org#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 
 ex:RainWaterOntology a owl:Ontology ;
     rdfs:label "Rain Water Ontology" ;
@@ -12,6 +13,7 @@ ex:RainWaterOntology a owl:Ontology ;
 ex:RainWater a owl:Class ;
     rdfs:label "RainWater" ;
     rdfs:comment "The main class for this ontology." ;
+    rdfs:subClassOf owl:Thing ;  # Link to owl:Thing
     ex:Has ex:Storage ;
     ex:Has ex:Reuse ;
     ex:Has ex:Collection ;
