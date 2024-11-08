@@ -187,9 +187,18 @@ ex:PumpSystem a owl:Class ;
 ex:ControlValve a owl:Class ;
         rdfs:comment "Devices that regulate flow in the distribution network.".
 ###########################################################
-ex:hasStorage a owl:ObjectProperty .
-ex:hasReuse a owl:ObjectProperty .
-ex:hasDistribution a owl:ObjectProperty .
+ex:hasStorage a owl:ObjectProperty ;
+    rdfs:domain ex:RainWater;
+    rdfs:range ex:storage.
+
+ex:hasReuse a owl:ObjectProperty ;
+    rdfs:domain ex:RainWater;
+    rdfs:range ex:Reuse.
+
+ex:hasDistribution a owl:ObjectProperty ;
+    rdfs:domain ex:RainWater;
+    rdfs:range ex:Distribution.
+
 ex:hasMonitoring a owl:ObjectProperty .
 ex:hasCollection a owl:ObjectProperty .
 ex:hasTreatment a owl:ObjectProperty .
@@ -227,10 +236,19 @@ ex:FilteredBy a owl:ObjectProperty ;
 ex:DisinfectedBy a owl:ObjectProperty ;
     rdfs:label "Disinfected by property".
 
-ex:hasReading a owl:DatatypeProperty ;
+ex:hasReading a owl:ObjectProperty ;
     rdfs:label "has reading" ;
     rdfs:comment "Holds the reading value of a sensor" .
     #rdfs:domain ex:Reading ;
     #rdfs:range xsd:float .
+
+ex:hasID a owl:DatatypeProperty.
+ex:hasTime a owl:DatatypeProperty.
+ex:hasLocation a owl:ObjectProperty.
+ex:hasModel a owl:DatatypeProperty.
+ex:hasUnit a owl:DatatypeProperty.
+ex:hasLat a owl:DatatypeProperty.
+ex:hasLang a owl:DatatypeProperty.
+
 
 ###########################################################
