@@ -59,9 +59,9 @@ ex:Monitoring a owl:Class.
 ex:WaterQualitySensor a owl:Class ;
     rdfs:comment "Devices used to measure pH, turbidity, contaminants, etc.".
 
-ex:Reading a owl:Class.
+ex:SensorReading a owl:Class.
 ex:TimeStamp a owl:Class.
-ex:SensorInstalledAt a owl:Class.
+ex:Location a owl:Class.
 ex:Model a owl:Class.
 ex:ID a owl:Class.
 ex:Unit a owl:Class.
@@ -282,7 +282,7 @@ ex:hasReading a owl:ObjectProperty ;
     rdfs:label "has reading" ;
     rdfs:comment "Holds the reading value of a sensor" ;
         rdfs:domain ex:WaterQualitySensor;
-    rdfs:range ex:Reading.
+    rdfs:range ex:SensorReading.
     #rdfs:domain ex:Reading ;
     #rdfs:range xsd:float .
 
@@ -294,24 +294,24 @@ ex:hasTime a owl:DatatypeProperty;
     rdfs:domain ex:WaterQualitySensor;
     rdfs:range xsd:dataTime.
 
-ex:isInstalledAt a owl:ObjectProperty;
+ex:hasLocation a owl:ObjectProperty;
     rdfs:domain ex:WaterQualitySensor;
-    rdfs:range ex:SensorInstalledAt.
+    rdfs:range ex:Location.
 
 ex:hasModel a owl:DatatypeProperty;
     rdfs:domain ex:WaterQualitySensor;
     rdfs:range xsd:string.
 
 ex:hasUnit a owl:DatatypeProperty;
-    rdfs:domain ex:Reading;
+    rdfs:domain ex:SensorReading;
     rdfs:range xsd:string.
 
 ex:hasLat a owl:DatatypeProperty;
-    rdfs:domain ex:SensorInstalledAt;
+    rdfs:domain ex:Location;
     rdfs:range xsd:float.
 
 ex:hasLang a owl:DatatypeProperty;
-    rdfs:domain ex:SensorInstalledAt;
+    rdfs:domain ex:Location;
     rdfs:range xsd:float.
 
 
