@@ -1,0 +1,27 @@
+@prefix ex: <http://example.org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:system_1a2b3c4d a ex:RainWater ;
+    ex:hasCollection ex:catchment_5e6f7g8h ;
+    ex:hasDistribution ex:distribution_9i0j1k2l ;
+    ex:hasMonitoring ex:monitoring_3m4n5o6p ;
+    ex:hasReuse ex:reuse_7q8r9s0t ;
+    ex:hasStorage ex:storage_u1v2w3x4 ;
+    ex:hasTreatment ex:treatment_y5z6a7b8 .
+
+ex:catchment_5e6f7g8h a ex:CatchmentArea ;
+    rdfs:comment "Rooftop catchment area" ;
+    ex:CollectedBy ex:barrel_c9d0e1f2 ,
+        ex:downspout_g3h4i5j6 ,
+        ex:gutter_k7l8m9n0 .
+
+ex:sensor_o1p2q3r4 a ex:Temperature ;
+    rdfs:comment "Water temperature sensor" ;
+    ex:hasID "550e8400-e29b-41d4-a716-446655440000" ;
+    ex:hasLocation ex:loc_s5t6u7v8 ;
+    ex:hasModel "Model-X200" ;
+    ex:hasReading 18.73 ;
+    ex:hasTime "2023-06-15T08:32:45"^^xsd:dateTime .
